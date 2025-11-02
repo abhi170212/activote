@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% block title %}Results - Voting System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h2>Election Results</h2>
+        <p>Live updates from the ongoing election</p>
+    </div>
+    
+    <div class="results-container">
+        <div class="results-header">
+            <div class="election-info">
+                <h3>General Election 2025</h3>
+                <p>Last updated: November 2, 2025, 3:45 PM</p>
+            </div>
+            <div class="total-votes">
+                <h3>1,248,567</h3>
+                <p>Total Votes Cast</p>
+            </div>
+        </div>
+        
+        <div class="results-chart">
+            <div class="candidate-result">
+                <div class="candidate-info">
+                    <div class="candidate-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Alex Johnson">
+                    </div>
+                    <div class="candidate-details">
+                        <h3>Alex Johnson</h3>
+                        <p class="party">Democratic Party</p>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 62%;">62%</div>
+                    </div>
+                </div>
+                <div class="vote-count">
+                    <h4>774,112</h4>
+                    <p>votes</p>
+                </div>
+            </div>
+            
+            <div class="candidate-result">
+                <div class="candidate-info">
+                    <div class="candidate-avatar">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Sam Rodriguez">
+                    </div>
+                    <div class="candidate-details">
+                        <h3>Sam Rodriguez</h3>
+                        <p class="party">Republican Party</p>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 32%;">32%</div>
+                    </div>
+                </div>
+                <div class="vote-count">
+                    <h4>399,542</h4>
+                    <p>votes</p>
+                </div>
+            </div>
+            
+            <div class="candidate-result">
+                <div class="candidate-info">
+                    <div class="candidate-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Jordan Smith">
+                    </div>
+                    <div class="candidate-details">
+                        <h3>Jordan Smith</h3>
+                        <p class="party">Independent</p>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 6%;">6%</div>
+                    </div>
+                </div>
+                <div class="vote-count">
+                    <h4>74,913</h4>
+                    <p>votes</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="results-summary">
+            <div class="summary-card">
+                <h3>Turnout Rate</h3>
+                <p class="percentage">78%</p>
+                <p>of eligible voters</p>
+            </div>
+            <div class="summary-card">
+                <h3>Leading Candidate</h3>
+                <p class="candidate-name">Alex Johnson</p>
+                <p>(Democratic Party)</p>
+            </div>
+            <div class="summary-card">
+                <h3>Remaining Time</h3>
+                <p class="time">12 days</p>
+                <p>until results final</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.results-container {
+    background: white;
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin: 3rem 0;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 3rem;
+}
+
+.election-info h3 {
+    font-size: 2rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.election-info p {
+    color: var(--gray);
+}
+
+.total-votes h3 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+.total-votes p {
+    text-align: center;
+    color: var(--gray);
+}
+
+.candidate-result {
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.candidate-result:last-child {
+    border-bottom: none;
+}
+
+.candidate-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.candidate-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.candidate-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.candidate-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+    color: var(--dark);
+}
+
+.party {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.progress-container {
+    width: 100%;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 10px;
+}
+
+.vote-count h4 {
+    font-size: 1.5rem;
+    color: var(--dark);
+    text-align: right;
+    margin-bottom: 0.3rem;
+}
+
+.vote-count p {
+    color: var(--gray);
+    text-align: right;
+}
+
+.results-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--light-gray);
+}
+
+.summary-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--light);
+    border-radius: var(--border-radius);
+}
+
+.summary-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.percentage, .candidate-name, .time {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 992px) {
+    .candidate-result {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .results-header {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .results-container {
+        padding: 2rem 1rem;
+    }
+    
+    .results-summary {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

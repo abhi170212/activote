@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load dict_extras %}
+
+{% block title %}Vote Results - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h2>Vote Results</h2>
+        <p>Detailed voting statistics for {{ current_user.username }}</p>
+    </div>
+    
+    <div class="results-container">
+        <div class="stats-overview">
+            <div class="stat-card">
+                <h3>Total Votes Cast</h3>
+                <p class="stat-number">{{ total_votes }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Your Voting Status</h3>
+                <p class="stat-text">{% if user_has_voted %}Voted{% else %}Not Voted{% endif %}</p>
+            </div>
+        </div>
+        
+        <div class="results-chart">
+            <h3>Voting Distribution</h3>
+            <div class="chart-container">
+                {% for candidate in candidates %}
+                <div class="candidate-result">
+                    <div class="candidate-info">
+                        <img src="{{ candidate.image_url }}" alt="{{ candidate.name }}">
+                        <div>
+                            <h4>{{ candidate.name }}</h4>
+                            <p>{{ candidate.party }}</p>
+                        </div>
+                    </div>
+                    <div class="vote-bar">
+                        <div class="vote-progress" style="width: {{ vote_stats|get_item:candidate.id|get_item:'percentage' }}%;">
+                            <span class="vote-count">{{ vote_stats|get_item:candidate.id|get_item:'count' }} votes</span>
+                        </div>
+                    </div>
+                    <div class="vote-percent">
+                        {{ vote_stats|get_item:candidate.id|get_item:'percentage'|floatformat:1 }}%
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="back-button-container">
+            <a href="{% url 'candidates' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Candidates
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.results-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin: 3rem 0;
+}
+
+.stats-overview {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    min-width: 200px;
+}
+
+.stat-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-gray);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--neon-gold);
+    margin: 0;
+}
+
+.stat-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: {% if user_has_voted %}var(--neon-gold){% else %}var(--text-gray){% endif %};
+    margin: 0;
+}
+
+.results-chart h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--neon-gold);
+}
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.candidate-result {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.candidate-result:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px);
+}
+
+.candidate-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.candidate-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--neon-gold);
+}
+
+.candidate-info h4 {
+    font-size: 1.3rem;
+    margin: 0 0 0.3rem 0;
+    color: var(--text-light);
+}
+
+.candidate-info p {
+    margin: 0;
+    color: var(--neon-amber);
+    font-size: 1rem;
+}
+
+.vote-bar {
+    flex: 3;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.vote-progress {
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    transition: width 1s ease;
+}
+
+.vote-count {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--darker-bg);
+    white-space: nowrap;
+}
+
+.vote-percent {
+    flex: 0.5;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.back-button-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border: 2px solid var(--neon-gold);
+    color: var(--neon-gold);
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: var(--neon-gold);
+    color: var(--darker-bg);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .stats-overview {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .candidate-result {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .vote-bar {
+        width: 100%;
+    }
+    
+    .vote-percent {
+        align-self: flex-end;
+    }
+}
+</style>
+{% endblock %}

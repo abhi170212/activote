@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}Voter Guide - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h1>Voter Guide</h1>
+        <p>Your comprehensive resource for participating in elections</p>
+    </div>
+    
+    <div class="guide-container">
+        <div class="guide-section">
+            <h2>Registration Process</h2>
+            <div class="guide-content">
+                <h3>How to Register</h3>
+                <ol>
+                    <li>Visit your local election office or the official government website</li>
+                    <li>Complete the voter registration form with your personal information</li>
+                    <li>Provide proof of identity and residency (driver's license, passport, utility bill, etc.)</li>
+                    <li>Submit your application before the registration deadline</li>
+                    <li>Check your registration status online to confirm it was processed</li>
+                </ol>
+                
+                <h3>Eligibility Requirements</h3>
+                <ul>
+                    <li>You must be a citizen of the country</li>
+                    <li>You must be at least 18 years old by Election Day</li>
+                    <li>You must be a resident of the state where you're registering</li>
+                    <li>You cannot be currently incarcerated for a felony conviction</li>
+                </ul>
+                
+                <h3>Registration Deadlines</h3>
+                <p>Registration deadlines vary by state. In most locations, you must register at least 15 days before an election. Some states offer same-day registration at polling places.</p>
+            </div>
+        </div>
+        
+        <div class="guide-section">
+            <h2>Voting Process</h2>
+            <div class="guide-content">
+                <h3>Finding Your Polling Place</h3>
+                <p>Your polling place information is included on your voter registration card. You can also find this information by visiting your state's Secretary of State website or using the official polling place locator.</p>
+                
+                <h3>What to Bring</h3>
+                <ul>
+                    <li>Valid photo identification (requirements vary by state)</li>
+                    <li>Voter registration card (if you have it)</li>
+                    <li>Pencil or pen for marking paper ballots</li>
+                </ul>
+                
+                <h3>Accessible Voting</h3>
+                <p>All polling places must provide accessible voting equipment for voters with disabilities. If you need assistance, poll workers are available to help. You may also bring someone to assist you, as long as they are not your employer or union representative.</p>
+            </div>
+        </div>
+        
+        <div class="guide-section">
+            <h2>Absentee and Mail-in Voting</h2>
+            <div class="guide-content">
+                <h3>Eligibility for Absentee Voting</h3>
+                <p>You may be eligible for an absentee ballot if you:</p>
+                <ul>
+                    <li>Will be out of town on Election Day</li>
+                    <li>Are ill or physically disabled</li>
+                    <li>Are a student attending college in another state</li>
+                    <li>Are serving as an election official at a different polling place</li>
+                    <li>Have religious obligations that prevent you from voting in person</li>
+                </ul>
+                
+                <h3>Requesting an Absentee Ballot</h3>
+                <ol>
+                    <li>Complete an absentee ballot application</li>
+                    <li>Submit the application by your state's deadline</li>
+                    <li>Receive your absentee ballot by mail</li>
+                    <li>Complete and return your ballot before the deadline</li>
+                </ol>
+                
+                <h3>Mail-in Voting</h3>
+                <p>Some states offer no-excuse mail-in voting, allowing any eligible voter to request a mail-in ballot. Check your state's specific rules and deadlines.</p>
+            </div>
+        </div>
+        
+        <div class="guide-section">
+            <h2>Understanding the Ballot</h2>
+            <div class="guide-content">
+                <h3>Types of Races</h3>
+                <ul>
+                    <li><strong>Federal:</strong> President, U.S. Senators, U.S. Representatives</li>
+                    <li><strong>State:</strong> Governor, State Senators, State Representatives</li>
+                    <li><strong>Local:</strong> Mayor, City Council, School Board, County Commissioners</li>
+                    <li><strong>Referendums:</strong> Proposed laws or constitutional amendments</li>
+                </ul>
+                
+                <h3>Voting Instructions</h3>
+                <p>Follow the specific instructions on your ballot. For paper ballots, fill in the oval or box completely. For electronic voting machines, touch the screen to make your selections. Review your choices before submitting.</p>
+                
+                <h3>Write-in Candidates</h3>
+                <p>If you wish to vote for a candidate not listed on the ballot, you may write in their name in the designated write-in space. The candidate must be qualified for the office and have filed the necessary paperwork.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.guide-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.guide-section {
+    margin-bottom: 3rem;
+}
+
+.guide-section:last-child {
+    margin-bottom: 0;
+}
+
+.guide-section h2 {
+    color: var(--neon-gold);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.guide-content h3 {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.guide-content p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.guide-content ul, .guide-content ol {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.guide-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+</style>
+{% endblock %}

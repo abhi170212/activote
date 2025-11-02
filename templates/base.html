@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ACti VOTE - Premium Voting System{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Static Navigation Bar -->
+    <header id="header">
+        <nav class="container">
+            <a href="/" class="logo">ACti<span>VOTE</span></a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="#candidates"><i class="fas fa-user-tie"></i> Candidates</a></li>
+                <li><a href="#news"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                {% if user.is_superuser %}
+                <li><a href="{% url 'admin_dashboard' %}"><i class="fas fa-chart-bar"></i> Admin Dashboard</a></li>
+                {% endif %}
+            </ul>
+            <div class="auth-buttons">
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <a href="{% url 'admin_dashboard' %}" class="login-btn">
+                            <i class="fas fa-chart-bar"></i> Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{% url 'vote' %}" class="login-btn">
+                            <i class="fas fa-vote-yea"></i> Vote
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'custom_logout' %}" class="login-btn" style="margin-left: 1rem;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="{% url 'register' %}" class="login-btn" style="margin-left: 1rem;">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Scroll to Top/Bottom Buttons -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scrollTopBtn" title="Scroll to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="scroll-btn" id="scrollBottomBtn" title="Scroll to Bottom">
+            <i class="fas fa-arrow-down"></i>
+        </button>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ACtiVOTE</h3>
+                    <p>Shaping the future through secure, transparent, and accessible democratic participation.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#candidates"><i class="fas fa-user-tie"></i> Candidates</a></li>
+                        <li><a href="#news"><i class="fas fa-newspaper"></i> News & Polls</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        {% if user.is_superuser %}
+                        <li><a href="{% url 'admin_dashboard' %}"><i class="fas fa-chart-bar"></i> Admin Dashboard</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="{% url 'voter_guide' %}"><i class="fas fa-book"></i> Voter Guide</a></li>
+                        <li><a href="{% url 'security' %}"><i class="fas fa-shield-alt"></i> Security</a></li>
+                        <li><a href="{% url 'privacy_policy' %}"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                        <li><a href="{% url 'terms_of_service' %}"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@activote.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Democracy St, City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 ACtiVOTE. All rights reserved. Empowering democratic participation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

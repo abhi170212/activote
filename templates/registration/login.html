@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h2>Login to ACti VOTE</h2>
+        <p>Access your voting account to participate in elections</p>
+    </div>
+    
+    <div class="login-container">
+        <div class="login-card">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Username</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.password.id_for_label }}">Password</label>
+                    {{ form.password }}
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+                
+                {% if form.errors %}
+                <div class="error-message" style="margin-top: 1rem; padding: 1rem; background: rgba(255, 0, 0, 0.1); border-radius: 10px; color: #ff6b6b;">
+                    <p>Your username and password didn't match. Please try again.</p>
+                </div>
+                {% endif %}
+            </form>
+            
+            <div class="social-login" style="margin-top: 2rem;">
+                <button class="social-btn google" style="margin-bottom: 1rem;">
+                    <i class="fab fa-google"></i> Sign in with Google
+                </button>
+                <button class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i> Sign in with Facebook
+                </button>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; color: var(--text-gray);">
+                Don't have an account? <a href="{% url 'register' %}" style="color: var(--neon-gold);">Register</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+.login-container {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.login-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--neon-gold);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.social-btn {
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--neon-gold);
+}
+
+.social-btn.google {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+}
+
+.social-btn.facebook {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,333 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - ACti VOTE{% endblock %}
+
+{% block content %}
+<!-- Floating Elements -->
+<div class="floating-element floating-1"></div>
+<div class="floating-element floating-2"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 id="typewriter">Shape the Future — Cast Your Vote</h1>
+                <p>Participate in democracy with our secure, transparent, and accessible voting platform designed for the modern era.</p>
+                <div class="hero-buttons">
+                    <a href="#candidates" class="btn btn-primary">
+                        <i class="fas fa-vote-yea"></i> Meet Candidates
+                    </a>
+                    <a href="#news" class="btn btn-secondary">
+                        <i class="fas fa-newspaper"></i> Latest News
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <div class="card-silhouette" style="background-image: url('https://images.unsplash.com/photo-1706949536544-40102f2fd185?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dm90aW5nJTIwYXBwfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500');"></div>
+                    <div class="card-content">
+                        <h3>Secure Digital Voting</h3>
+                        <p>Experience the future of democratic participation with military-grade encryption and transparent vote counting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Candidate Cards -->
+<section id="candidates">
+    <div class="container">
+        <div class="section-title">
+            <h2>Featured Candidates</h2>
+            <p>Meet the individuals running for office in upcoming elections</p>
+        </div>
+        <div class="candidates-grid">
+            <!-- Candidate 1 -->
+            <div class="candidate-card">
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Alexandra Chen</h3>
+                    <p class="candidate-role">Democratic Party</p>
+                    <p class="candidate-description">Experienced leader focused on education reform and healthcare accessibility.</p>
+                </div>
+                <div class="badges">
+                    <span class="badge trending">Trending</span>
+                    <span class="badge top-rated">Top Rated</span>
+                </div>
+                <div class="candidate-actions">
+                    <button class="vote-btn" disabled>
+                        <i class="fas fa-vote-yea"></i> Vote
+                    </button>
+                    <button class="info-btn">
+                        <i class="fas fa-info-circle"></i> Info
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Candidate 2 -->
+            <div class="candidate-card">
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Marcus Johnson</h3>
+                    <p class="candidate-role">Republican Party</p>
+                    <p class="candidate-description">Business executive turned politician focused on economic growth and job creation.</p>
+                </div>
+                <div class="badges">
+                    <span class="badge trending">Trending</span>
+                </div>
+                <div class="candidate-actions">
+                    <button class="vote-btn" disabled>
+                        <i class="fas fa-vote-yea"></i> Vote
+                    </button>
+                    <button class="info-btn">
+                        <i class="fas fa-info-circle"></i> Info
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Candidate 3 -->
+            <div class="candidate-card">
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Jordan Smith</h3>
+                    <p class="candidate-role">Independent</p>
+                    <p class="candidate-description">Community organizer advocating for environmental protection and social justice.</p>
+                </div>
+                <div class="badges">
+                    <span class="badge top-rated">Top Rated</span>
+                </div>
+                <div class="candidate-actions">
+                    <button class="vote-btn" disabled>
+                        <i class="fas fa-vote-yea"></i> Vote
+                    </button>
+                    <button class="info-btn">
+                        <i class="fas fa-info-circle"></i> Info
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Live News / Polls Section -->
+<section id="news">
+    <div class="container">
+        <div class="section-title">
+            <h2>Live News & Polls</h2>
+            <p>Stay updated with the latest political developments and real-time polling data</p>
+        </div>
+        <div class="news-card">
+            <div class="news-header">
+                <h3>Political Updates</h3>
+                <i class="fas fa-sync-alt" style="color: var(--neon-gold);"></i>
+            </div>
+            <div class="news-feed">
+                <div class="news-items">
+                    <div class="news-item">
+                        <h4>Election Day Approaches</h4>
+                        <p>Voting begins in 15 days. Make sure you're registered to participate in this important democratic process.</p>
+                    </div>
+                    <div class="news-item">
+                        <h4>New Voting Locations</h4>
+                        <p>Additional polling stations have been added to accommodate increased voter turnout in urban areas.</p>
+                    </div>
+                    <div class="news-item">
+                        <h4>Debate Schedule Announced</h4>
+                        <p>The final candidate debates will be held next week. Watch live coverage on all major networks.</p>
+                    </div>
+                    <div class="news-item">
+                        <h4>Voter Turnout Increases</h4>
+                        <p>Early voting numbers show a 23% increase compared to the previous election cycle.</p>
+                    </div>
+                    <div class="news-item">
+                        <h4>Security Measures Enhanced</h4>
+                        <p>New cybersecurity protocols have been implemented to ensure the integrity of the voting process.</p>
+                    </div>
+                    <div class="news-item">
+                        <h4>Election Day Approaches</h4>
+                        <p>Voting begins in 15 days. Make sure you're registered to participate in this important democratic process.</p>
+                    </div>
+                    <div class="news-item">
+                        <h4>New Voting Locations</h4>
+                        <p>Additional polling stations have been added to accommodate increased voter turnout in urban areas.</p>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="view-more">
+                <i class="fas fa-arrow-right"></i> View All Updates
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section with Side-by-Side Layout -->
+<section id="gallery">
+    <div class="container">
+        <div class="section-title">
+            <h2>Politician Gallery</h2>
+            <p>Explore notable political figures and their key statements</p>
+        </div>
+        <div class="gallery-grid">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item" style="background-image: url('https://plus.unsplash.com/premium_photo-1690579805323-ce7193c0755d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>Alexandra Chen</h3>
+                        <p>"Education is the foundation of a prosperous society. We must invest in our children's future."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item" style="background-image: url('https://media.istockphoto.com/id/2174363314/photo/businessman-looking-at-camera.webp?a=1&b=1&s=612x612&w=0&k=20&c=Wg5df0t9j220uqROFaa9o6UizDHNLLVTgan1Qt5A8is=');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>Marcus Johnson</h3>
+                        <p>"Economic growth comes from empowering businesses and creating jobs for our citizens."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item" style="background-image: url('https://media.istockphoto.com/id/2218333101/photo/confident-mature-man-smiling-in-professional-attire-with-a-calm-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=-Nn26lDOKlTW7rICj5U2l2wjaDWYMLbG1uDnqGV-9kE=');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>Jordan Smith</h3>
+                        <p>"Protecting our environment is protecting our future. We must act now for the next generation."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item" style="background-image: url('https://media.istockphoto.com/id/1450340623/photo/portrait-of-successful-mature-boss-senior-businessman-in-glasses-asian-looking-at-camera-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=U4eW1LUVGk14Vjl4qzQ-H7WcrGXypGZkINzmeydOQvg=');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>Sarah Williams</h3>
+                        <p>"Healthcare is a human right. We must ensure every citizen has access to quality care."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1507120878965-54b2d3939100?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>David Thompson</h3>
+                        <p>"Transparency in government builds trust. We must hold ourselves accountable to the people."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item" style="background-image: url('https://media.istockphoto.com/id/2162937006/photo/studio-portrait-of-decision-making-businesswoman-in-businesswear.webp?a=1&b=1&s=612x612&w=0&k=20&c=Pu-hZ3TEdx-khwkiX_ql6P0Z8JmPX7W0ghpEorhqP1E=');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>Emily Rodriguez</h3>
+                        <p>"Innovation drives progress. We must foster creativity and entrepreneurship in our communities."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 7 -->
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>Michael Anderson</h3>
+                        <p>"Infrastructure investment creates jobs and strengthens our economic foundation for future generations."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 8 -->
+            <div class="gallery-item" style="background-image: url('https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.webp?a=1&b=1&s=612x612&w=0&k=20&c=jdNlxvWfyg_3TeA9YIc5g-bySd-gedAdnifCMFUvNII=');">
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h3>Patricia Wilson</h3>
+                        <p>"Social justice requires active participation from all members of our community to create meaningful change."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Accordion -->
+<section id="faq">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about the voting process</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I register to vote?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can register to vote online through our secure portal, at your local election office, or by mail. You'll need to provide your name, address, date of birth, and identification information. Registration must be completed at least 15 days before an election.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What identification do I need to bring to vote?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Acceptable forms of identification vary by state, but typically include a driver's license, state ID card, passport, or military ID. Check with your local election office for specific requirements in your area. If you don't have traditional ID, many states offer alternative options.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I vote early or by mail?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, most states offer early voting and mail-in ballot options. Early voting periods typically begin 2-3 weeks before Election Day. Mail-in ballots must be requested in advance and returned by the deadline specified by your state. Check your state's election website for specific details.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How is my vote secured and counted?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our voting system uses multiple layers of security including encrypted data transmission, secure storage, and independent verification processes. Each vote is recorded on multiple systems to ensure accuracy. Post-election audits are conducted to verify results. Your vote remains anonymous and cannot be traced back to you.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What should I do if I make a mistake on my ballot?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>If you make an error on your paper ballot, ask a poll worker for a new one. If you're voting electronically, you can usually correct your selections before submitting. For mail-in ballots, follow your state's correction procedures, which may include submitting a new ballot or using a correction affidavit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Typewriter effect for hero headline
+    document.addEventListener('DOMContentLoaded', function() {
+        const typewriterText = "Shape the Future — Cast Your Vote";
+        const element = document.getElementById('typewriter');
+        if (element) {
+            element.textContent = "";
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < typewriterText.length) {
+                    element.textContent += typewriterText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 100);
+        }
+    });
+</script>
+{% endblock %}

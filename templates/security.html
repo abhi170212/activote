@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Security - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h1>Security</h1>
+        <p>Protecting your vote and personal information</p>
+    </div>
+    
+    <div class="security-container">
+        <div class="security-section">
+            <h2>Election Security Overview</h2>
+            <div class="security-content">
+                <p>Our voting system employs multiple layers of security to ensure the integrity of elections and protect voter privacy. We are committed to maintaining the highest standards of cybersecurity and election integrity.</p>
+                
+                <h3>Key Security Measures</h3>
+                <ul>
+                    <li><strong>End-to-End Encryption:</strong> All data transmission is encrypted using industry-standard protocols</li>
+                    <li><strong>Multi-Factor Authentication:</strong> Enhanced security for election officials and administrators</li>
+                    <li><strong>Regular Security Audits:</strong> Independent third-party assessments of our systems</li>
+                    <li><strong>Voter Privacy Protection:</strong> Your personal information is never shared with candidates or parties</li>
+                    <li><strong>Secure Data Storage:</strong> All voter data is stored in encrypted, secure databases</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="security-section">
+            <h2>Protecting Your Vote</h2>
+            <div class="security-content">
+                <h3>Chain of Custody</h3>
+                <p>Every ballot is tracked through a secure chain of custody from casting to counting. This ensures that votes are not altered or lost during the process.</p>
+                
+                <h3>Independent Verification</h3>
+                <p>Our system allows for independent verification of election results through risk-limiting audits and manual recounts when necessary.</p>
+                
+                <h3>Post-Election Security</h3>
+                <p>After elections, we conduct thorough security reviews and implement any necessary improvements for future elections.</p>
+            </div>
+        </div>
+        
+        <div class="security-section">
+            <h2>Cybersecurity Measures</h2>
+            <div class="security-content">
+                <h3>Network Security</h3>
+                <p>Our systems are protected by enterprise-grade firewalls, intrusion detection systems, and continuous monitoring for suspicious activity.</p>
+                
+                <h3>Access Controls</h3>
+                <p>Only authorized personnel have access to critical systems, and all access is logged and regularly reviewed.</p>
+                
+                <h3>Incident Response</h3>
+                <p>We maintain a 24/7 incident response team ready to address any security concerns immediately.</p>
+            </div>
+        </div>
+        
+        <div class="security-section">
+            <h2>Voter Education</h2>
+            <div class="security-content">
+                <h3>Recognizing Disinformation</h3>
+                <p>Learn to identify false information about voting procedures and candidates. Always verify information through official sources.</p>
+                
+                <h3>Reporting Security Concerns</h3>
+                <p>If you notice any suspicious activity related to voting, report it immediately to election officials or through our secure reporting system.</p>
+                
+                <h3>Safe Voting Practices</h3>
+                <ul>
+                    <li>Never share your voting credentials with anyone</li>
+                    <li>Use secure, private devices and networks when possible</li>
+                    <li>Verify you're on the official voting website</li>
+                    <li>Report any technical issues immediately</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.security-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.security-section {
+    margin-bottom: 3rem;
+}
+
+.security-section:last-child {
+    margin-bottom: 0;
+}
+
+.security-section h2 {
+    color: var(--neon-gold);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.security-content h3 {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.security-content p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.security-content ul {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.security-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+</style>
+{% endblock %}

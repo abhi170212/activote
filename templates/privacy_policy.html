@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %}Privacy Policy - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h1>Privacy Policy</h1>
+        <p>How we collect, use, and protect your personal information</p>
+    </div>
+    
+    <div class="privacy-container">
+        <div class="privacy-section">
+            <h2>Information We Collect</h2>
+            <div class="privacy-content">
+                <h3>Personal Information</h3>
+                <p>When you register to vote or use our services, we may collect:</p>
+                <ul>
+                    <li>Name, address, date of birth</li>
+                    <li>Government-issued identification numbers</li>
+                    <li>Contact information (email, phone number)</li>
+                    <li>Voting history and participation records</li>
+                </ul>
+                
+                <h3>Automatically Collected Information</h3>
+                <p>When you visit our website, we may automatically collect:</p>
+                <ul>
+                    <li>IP address and device information</li>
+                    <li>Browser type and version</li>
+                    <li>Pages visited and time spent on our site</li>
+                    <li>Referring website addresses</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2>How We Use Your Information</h2>
+            <div class="privacy-content">
+                <h3>Election Administration</h3>
+                <p>We use your information to:</p>
+                <ul>
+                    <li>Verify your eligibility to vote</li>
+                    <li>Maintain accurate voter registration records</li>
+                    <li>Notify you of upcoming elections and important dates</li>
+                    <li>Prevent fraud and ensure election integrity</li>
+                </ul>
+                
+                <h3>Communication</h3>
+                <p>We may use your contact information to:</p>
+                <ul>
+                    <li>Send you important election updates</li>
+                    <li>Provide information about polling locations</li>
+                    <li>Notify you of changes to voting procedures</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2>Information Sharing and Disclosure</h2>
+            <div class="privacy-content">
+                <h3>With Your Consent</h3>
+                <p>We may share your information with your consent or at your direction.</p>
+                
+                <h3>Legal Requirements</h3>
+                <p>We may disclose your information if required by law or in response to valid legal processes.</p>
+                
+                <h3>Protection of Rights</h3>
+                <p>We may disclose information to protect our rights, property, or safety, or that of our users or the public.</p>
+                
+                <h3>Aggregate Information</h3>
+                <p>We may share aggregated, non-personally identifiable information with partners and the public.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2>Data Security</h2>
+            <div class="privacy-content">
+                <p>We implement appropriate technical and organizational measures to protect your personal information against accidental or unlawful destruction, loss, alteration, unauthorized disclosure, or access.</p>
+                
+                <p>However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to protect your personal information, we cannot guarantee its absolute security.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2>Your Rights</h2>
+            <div class="privacy-content">
+                <h3>Access and Correction</h3>
+                <p>You have the right to access and correct your personal information in our records.</p>
+                
+                <h3>Data Portability</h3>
+                <p>You may request a copy of your personal information in a structured, machine-readable format.</p>
+                
+                <h3>Deletion</h3>
+                <p>You may request deletion of your personal information, subject to legal and regulatory requirements.</p>
+                
+                <h3>Objections</h3>
+                <p>You may object to the processing of your personal information in certain circumstances.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2>Contact Us</h2>
+            <div class="privacy-content">
+                <p>If you have questions about this Privacy Policy or our privacy practices, please contact us:</p>
+                <p><strong>Email:</strong> privacy@activote.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Democracy St, City, State 12345</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.privacy-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.privacy-section {
+    margin-bottom: 3rem;
+}
+
+.privacy-section:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-section h2 {
+    color: var(--neon-gold);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.privacy-content h3 {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.privacy-content p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.privacy-content ul {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.privacy-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+</style>
+{% endblock %}

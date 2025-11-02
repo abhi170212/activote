@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Vote - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h2>Secure Voting Portal</h2>
+        <p>Welcome, {{ user.username }}. Please select an option below to proceed.</p>
+    </div>
+    
+    <div class="vote-container">
+        <div class="vote-card">
+            <h3><i class="fas fa-vote-yea"></i> Cast Your Vote</h3>
+            <p>View all candidates participating in this election and cast your vote securely.</p>
+            <a href="{% url 'candidates' %}" class="btn btn-primary" style="margin-top: 1.5rem;">
+                <i class="fas fa-users"></i> View Candidates
+            </a>
+        </div>
+        
+        <div class="vote-card" style="margin-top: 2rem;">
+            <h3><i class="fas fa-chart-bar"></i> View Results</h3>
+            <p>Check the current voting statistics and see how candidates are performing.</p>
+            <a href="{% url 'vote_results' %}" class="btn btn-secondary" style="margin-top: 1.5rem;">
+                <i class="fas fa-poll"></i> View Vote Results
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.vote-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+}
+
+.vote-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.vote-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--neon-gold);
+}
+
+.vote-card p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: var(--darker-bg);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--neon-gold);
+    border: 2px solid var(--neon-gold);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+</style>
+{% endblock %}

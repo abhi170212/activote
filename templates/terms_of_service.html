@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block title %}Terms of Service - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h1>Terms of Service</h1>
+        <p>Agreement between you and ACti VOTE</p>
+    </div>
+    
+    <div class="terms-container">
+        <div class="terms-section">
+            <h2>Acceptance of Terms</h2>
+            <div class="terms-content">
+                <p>By accessing or using the ACti VOTE website and services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p>
+                
+                <p>These terms apply to all visitors, users, and others who access or use our service.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Use of Service</h2>
+            <div class="terms-content">
+                <h3>Eligibility</h3>
+                <p>To use our services, you must be eligible to vote in the jurisdiction where you reside. You must provide accurate and complete information when registering to vote.</p>
+                
+                <h3>Account Security</h3>
+                <p>You are responsible for maintaining the confidentiality of your account and password. You agree to accept responsibility for all activities that occur under your account.</p>
+                
+                <h3>Prohibited Activities</h3>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the service for any illegal purpose</li>
+                    <li>Attempt to gain unauthorized access to our systems</li>
+                    <li>Interfere with the proper functioning of our services</li>
+                    <li>Impersonate any person or entity</li>
+                    <li>Harvest or collect email addresses or other contact information</li>
+                    <li>Transmit any viruses or malicious code</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Intellectual Property</h2>
+            <div class="terms-content">
+                <h3>Ownership</h3>
+                <p>The service and its original content, features, and functionality are and will remain the exclusive property of ACti VOTE and its licensors.</p>
+                
+                <h3>License</h3>
+                <p>We grant you a limited, non-exclusive, non-transferable license to access and use the service for personal, non-commercial use.</p>
+                
+                <h3>Restrictions</h3>
+                <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our website.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Accuracy of Information</h2>
+            <div class="terms-content">
+                <p>While we strive to ensure that the information on our website is accurate, we make no warranties or representations about the accuracy, completeness, or timeliness of any information.</p>
+                
+                <p>Election laws and procedures change frequently. It is your responsibility to verify information with official sources before taking any action.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Disclaimer of Warranties</h2>
+            <div class="terms-content">
+                <p>Our service is provided on an "as is" and "as available" basis. We disclaim all warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+                
+                <p>We do not warrant that the service will be uninterrupted, timely, secure, or error-free.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Limitation of Liability</h2>
+            <div class="terms-content">
+                <p>In no event shall ACti VOTE, its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+                <ul>
+                    <li>Your access to or use of or inability to access or use the service</li>
+                    <li>Any conduct or content of any third party on the service</li>
+                    <li>Any content obtained from the service</li>
+                    <li>Unauthorized access, use or alteration of your transmissions or content</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Governing Law</h2>
+            <div class="terms-content">
+                <p>These terms shall be governed and construed in accordance with the laws of the jurisdiction where our organization is based, without regard to its conflict of law provisions.</p>
+                
+                <p>Our failure to enforce any right or provision of these terms will not be considered a waiver of those rights.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Changes to Terms</h2>
+            <div class="terms-content">
+                <p>We reserve the right, at our sole discretion, to modify or replace these terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.</p>
+                
+                <p>What constitutes a material change will be determined at our sole discretion.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2>Contact Us</h2>
+            <div class="terms-content">
+                <p>If you have any questions about these Terms of Service, please contact us:</p>
+                <p><strong>Email:</strong> terms@activote.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Democracy St, City, State 12345</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.terms-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.terms-section {
+    margin-bottom: 3rem;
+}
+
+.terms-section:last-child {
+    margin-bottom: 0;
+}
+
+.terms-section h2 {
+    color: var(--neon-gold);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.terms-content h3 {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.terms-content p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.terms-content ul {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.terms-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+</style>
+{% endblock %}

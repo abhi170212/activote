@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load dict_extras %}
+
+{% block title %}Candidates - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h2>Election Candidates</h2>
+        <p>Meet the candidates participating in this election</p>
+    </div>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="padding: 1rem; margin-bottom: 2rem; border-radius: 10px; background: {% if message.tags == 'success' %}rgba(40, 167, 69, 0.2){% else %}rgba(220, 53, 69, 0.2){% endif %}; border: 1px solid {% if message.tags == 'success' %}#28a745{% else %}#dc3545{% endif %}; color: {% if message.tags == 'success' %}#28a745{% else %}#dc3545{% endif %};">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="vote-info">
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Votes</h3>
+                <p class="stat-number">{{ total_votes }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Your Status</h3>
+                <p class="stat-text">{% if user_has_voted %}Voted{% else %}Not Voted{% endif %}</p>
+            </div>
+        </div>
+        
+        {% if not user_has_voted %}
+            <p class="vote-instruction">Select a candidate below to cast your vote:</p>
+        {% else %}
+            <p class="vote-instruction">You have already cast your vote. Thank you for participating!</p>
+            <a href="{% url 'vote_results' %}" class="btn btn-primary" style="margin-top: 1rem;">
+                <i class="fas fa-chart-bar"></i> View Vote Results
+            </a>
+        {% endif %}
+    </div>
+    
+    <div class="candidates-grid">
+        {% for candidate in candidates %}
+        <div class="candidate-card">
+            <div class="candidate-image">
+                <img src="{{ candidate.image_url }}" alt="{{ candidate.name }}">
+            </div>
+            <div class="candidate-info">
+                <h3 class="candidate-name">{{ candidate.name }}</h3>
+                <p class="candidate-party">{{ candidate.party }}</p>
+                
+                <div class="vote-stats">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: {{ vote_stats|get_item:candidate.id|get_item:'percentage' }}%;">
+                            {{ vote_stats|get_item:candidate.id|get_item:'count' }} votes
+                        </div>
+                    </div>
+                    <p class="vote-percentage">{{ vote_stats|get_item:candidate.id|get_item:'percentage'|floatformat:1 }}%</p>
+                </div>
+                
+                <div class="candidate-actions">
+                    <a href="{% url 'manifesto' candidate.id %}" class="btn btn-secondary manifesto-btn">
+                        <i class="fas fa-book-open"></i> Manifesto
+                    </a>
+                    
+                    {% if not user_has_voted %}
+                        <a href="{% url 'cast_vote' candidate.id %}" class="btn btn-primary vote-btn">
+                            <i class="fas fa-vote-yea"></i> Vote
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.vote-info {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    min-width: 150px;
+}
+
+.stat-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-gray);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--neon-gold);
+    margin: 0;
+}
+
+.stat-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: {% if user_has_voted %}var(--neon-gold){% else %}var(--text-gray){% endif %};
+    margin: 0;
+}
+
+.vote-instruction {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin: 1rem 0;
+}
+
+.candidates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.candidate-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    transition: var(--transition);
+}
+
+.candidate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.candidate-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.candidate-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.candidate-card:hover .candidate-image img {
+    transform: scale(1.05);
+}
+
+.candidate-info {
+    padding: 2rem;
+    text-align: center;
+}
+
+.candidate-name {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.candidate-party {
+    color: var(--neon-gold);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.vote-stats {
+    margin: 1.5rem 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress {
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--darker-bg);
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: width 0.5s ease;
+}
+
+.vote-percentage {
+    font-size: 1rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.candidate-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.manifesto-btn, .vote-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.manifesto-btn {
+    border: 2px solid var(--neon-gold);
+    color: var(--neon-gold);
+    background: transparent;
+}
+
+.vote-btn {
+    background: var(--accent-gradient);
+    color: var(--darker-bg);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.manifesto-btn:hover {
+    background: var(--neon-gold);
+    color: var(--darker-bg);
+    transform: translateY(-3px);
+}
+
+.vote-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+}
+</style>
+{% endblock %}

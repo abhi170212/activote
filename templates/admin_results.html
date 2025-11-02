@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load dict_extras %}
+
+{% block title %}Admin Results - ACti VOTE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title">
+        <h2>Admin Voting Results</h2>
+        <p>Detailed voting statistics and data management</p>
+    </div>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="padding: 1rem; margin-bottom: 2rem; border-radius: 10px; background: {% if message.tags == 'success' %}rgba(40, 167, 69, 0.2){% else %}rgba(220, 53, 69, 0.2){% endif %}; border: 1px solid {% if message.tags == 'success' %}#28a745{% else %}#dc3545{% endif %}; color: {% if message.tags == 'success' %}#28a745{% else %}#dc3545{% endif %};">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="admin-actions" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+        <a href="{% url 'export_detailed_votes' %}" class="btn btn-primary">
+            <i class="fas fa-file-export"></i> Export to CSV
+        </a>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">
+            <i class="fas fa-chart-bar"></i> Full Dashboard
+        </a>
+    </div>
+    
+    <div class="stats-overview">
+        <div class="stat-card">
+            <h3>Total Votes</h3>
+            <p class="stat-number">{{ total_votes }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Candidates</h3>
+            <p class="stat-number">{{ candidates|length }}</p>
+        </div>
+    </div>
+    
+    <div class="results-container">
+        <!-- Pie Chart Section -->
+        <div class="chart-section">
+            <h3 style="text-align: center; color: var(--neon-gold); margin-bottom: 2rem;">Vote Distribution</h3>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div class="pie-chart-container">
+                    <canvas id="pieChart" width="300" height="300"></canvas>
+                </div>
+                <div class="legend-container">
+                    <h4>Candidates</h4>
+                    <div class="legend-items">
+                        {% for candidate in candidates %}
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: {{ colors|get_item:candidate.id }};"></div>
+                            <div class="legend-text">
+                                <span class="legend-name">{{ candidate.name }}</span>
+                                <span class="legend-value">{{ vote_stats|get_item:candidate.id|get_item:'count' }} votes ({{ vote_stats|get_item:candidate.id|get_item:'percentage'|floatformat:1 }}%)</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Detailed Results Section -->
+        <div class="detailed-results-section">
+            <h3 style="color: var(--neon-gold); margin: 3rem 0 1.5rem 0;">Detailed Vote Information</h3>
+            <div class="results-table">
+                <table style="width: 100%; border-collapse: collapse; background: var(--glass-bg); border-radius: var(--border-radius); overflow: hidden;">
+                    <thead>
+                        <tr style="background: rgba(255, 215, 0, 0.1);">
+                            <th style="padding: 1rem; text-align: left; color: var(--neon-gold);">Candidate</th>
+                            <th style="padding: 1rem; text-align: left; color: var(--neon-gold);">Party</th>
+                            <th style="padding: 1rem; text-align: left; color: var(--neon-gold);">Votes</th>
+                            <th style="padding: 1rem; text-align: left; color: var(--neon-gold);">Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidate in candidates %}
+                        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <td style="padding: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <img src="{{ candidate.image_url }}" alt="{{ candidate.name }}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                                    <span>{{ candidate.name }}</span>
+                                </div>
+                            </td>
+                            <td style="padding: 1rem;">{{ candidate.party }}</td>
+                            <td style="padding: 1rem;">{{ vote_stats|get_item:candidate.id|get_item:'count' }}</td>
+                            <td style="padding: 1rem;">{{ vote_stats|get_item:candidate.id|get_item:'percentage'|floatformat:1 }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Voter Details Section -->
+        <div class="voter-details-section">
+            <h3 style="color: var(--neon-gold); margin: 3rem 0 1.5rem 0;">Voter Details</h3>
+            <div class="voter-table">
+                <table style="width: 100%; border-collapse: collapse; background: var(--glass-bg); border-radius: var(--border-radius); overflow: hidden;">
+                    <thead>
+                        <tr style="background: rgba(255, 215, 0, 0.1);">
+                            <th style="padding: 1rem; text-align: left; color: var(--neon-gold);">Candidate</th>
+                            <th style="padding: 1rem; text-align: left; color: var(--neon-gold);">Voter ID</th>
+                            <th style="padding: 1rem; text-align: left; color: var(--neon-gold);">Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidate in candidates %}
+                            {% for voter_id in votes|get_item:candidate.id %}
+                            <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                                <td style="padding: 1rem;">{{ candidate.name }}</td>
+                                <td style="padding: 1rem;">{{ voter_id }}</td>
+                                <td style="padding: 1rem;">{% now "Y-m-d H:i:s" %}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.stats-overview {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    min-width: 200px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-gray);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--neon-gold);
+    margin: 0;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: var(--darker-bg);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--neon-gold);
+    border: 2px solid var(--neon-gold);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.pie-chart-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.legend-container {
+    background: var(--glass-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    min-width: 250px;
+}
+
+.legend-container h4 {
+    color: var(--neon-gold);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.legend-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.legend-name {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.legend-value {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get chart data from template
+    const chartData = {{ chart_data|safe }};
+    
+    // Prepare data for Chart.js
+    const labels = chartData.map(item => item.name);
+    const votes = chartData.map(item => item.votes);
+    const percentages = chartData.map(item => item.percentage);
+    
+    // Define colors for the pie chart
+    const backgroundColors = [
+        'rgba(255, 215, 0, 0.7)',
+        'rgba(255, 191, 0, 0.7)',
+        'rgba(218, 165, 32, 0.7)',
+        'rgba(184, 134, 11, 0.7)'
+    ];
+    
+    const borderColors = [
+        'rgba(255, 215, 0, 1)',
+        'rgba(255, 191, 0, 1)',
+        'rgba(218, 165, 32, 1)',
+        'rgba(184, 134, 11, 1)'
+    ];
+    
+    // Create pie chart
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: votes,
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const index = context.dataIndex;
+                            return `${context.label}: ${context.raw} votes (${percentages[index]}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}
