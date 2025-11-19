@@ -18,7 +18,7 @@ class Vote(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        unique_together = ('candidate', 'user')  # Ensure one vote per user per candidate
+        unique_together = ('candidate', 'user')  # Ensure karo ek hi baar vote de sake ek candidate.
     
     def __str__(self):
-        return f"{self.user.username} voted for {self.candidate.name}"
+        return f"{self.user} voted for {self.candidate} at {self.timestamp}"

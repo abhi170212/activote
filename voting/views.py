@@ -465,7 +465,7 @@ def export_detailed_votes_to_csv(request):
         messages.error(request, "Access denied. Admin privileges required.")
         return redirect('home')
     
-    # Get all candidates
+    # sare candisates ko fetch karna from db
     candidates = []
     for candidate_data in CANDIDATES_DATA:
         # Try to get or create candidate in database
@@ -496,7 +496,7 @@ def export_detailed_votes_to_csv(request):
         percentage = (candidate_votes / total_votes * 100) if total_votes > 0 else 0
         csv_content += f"{candidate_data['name']},{candidate_data['party']},{candidate_votes},{percentage:.1f}%\n"
     
-    # Add detailed vote data
+    # vote ke details wale data ko add ka
     csv_content += "\nDetailed Vote Data\n"
     csv_content += "Candidate Name,Voter ID,Timestamp\n"
     
@@ -508,7 +508,7 @@ def export_detailed_votes_to_csv(request):
         for vote in votes:
             csv_content += f"{candidate_data['name']},{vote.user.id},{vote.timestamp}\n"
     
-    # Create HTTP response with CSV content
+    # Create  CSV file ke liye data gather karo
     response = HttpResponse(content=csv_content.encode('utf-8'), content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="detailed_voting_data.csv"'
     
